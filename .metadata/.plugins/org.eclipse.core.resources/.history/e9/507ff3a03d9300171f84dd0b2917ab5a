@@ -1,0 +1,9 @@
+import org.junit.BeforeClass;
+
+public class JUnitMaster {
+
+	@BeforeClass
+	public static void primus_Launch(){
+		
+	}
+}

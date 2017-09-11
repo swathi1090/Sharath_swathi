@@ -1,0 +1,48 @@
+package driverscripts;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class keyword2 {
+
+	public static void main(String[] args) throws IOException {
+		
+		String xlpath = "C:\\code repository\\Selenium Projects\\src\\com\\Selenium\\ExcelData\\keyword.xlsx";
+		FileInputStream fi = new FileInputStream(xlpath);
+		
+		XSSFWorkbook wb = new XSSFWorkbook(fi);
+		XSSFSheet tc_sht = wb.getSheet("TestCase");
+		XSSFSheet ts_sht = wb.getSheet("TestSteps");
+		
+		int tc_rc = tc_sht.getLastRowNum();
+		int ts_rc = ts_sht.getLastRowNum();
+		
+		for (int i = 1; i <= tc_rc; i++) {
+			
+			String exe =tc_sht.getRow(i).getCell(2).getStringCellValue();
+			
+			if (exe.equalsIgnoreCase("y")) {
+				
+				String tc_ID = tc_sht.getRow(0).getCell(1).getStringCellValue();
+				
+				for (int j = 1; j <= ts_rc; j++) {
+					
+					String ts_ID = ts_sht.getRow(j).getCell(1).getStringCellValue();
+					
+					if (ts_ID.equalsIgnoreCase(tc_ID)) {
+						
+					}
+					
+				}
+				
+			}
+			
+		}
+
+	}
+
+}

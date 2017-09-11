@@ -1,0 +1,133 @@
+package driverscripts;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import Methods.OrgMaster;
+
+public class keyword {
+
+	public static void main(String[] args) throws IOException {
+
+		OrgMaster om = new OrgMaster();
+		String res = null;
+
+		String xout = "C:\\code repository\\Selenium Projects\\src\\com\\Selenium\\Resutls\\keyresults.xlsx";
+		FileOutputStream fo = new FileOutputStream(xout);
+
+		String xpath = "C:\\code repository\\Selenium Projects\\src\\com\\Selenium\\ExcelData\\keyword.xlsx";
+		FileInputStream fi = new FileInputStream(xpath);
+
+		XSSFWorkbook wb = new XSSFWorkbook(fi);
+		XSSFSheet tc = wb.getSheet("TestCase");
+		XSSFSheet ts = wb.getSheet("TestSteps");
+		XSSFSheet td = wb.getSheet("TD");
+		
+
+		int tc_lr = tc.getLastRowNum();
+		int ts_lr = ts.getLastRowNum();
+
+		for (int i = 1; i <= tc_lr; i++) {
+
+			tc.getRow(i).createCell(3);
+			String exe = tc.getRow(1).getCell(2).getStringCellValue();
+
+			if (exe.equalsIgnoreCase("Y")) {
+
+				String tcID = tc.getRow(i).getCell(0).getStringCellValue();
+
+				for (int j = 1; j <= ts_lr; j++) {
+
+					String tsID = ts.getRow(j).getCell(0).getStringCellValue();
+
+					if (tcID.equalsIgnoreCase(tsID)) {
+
+						String key = ts.getRow(j).getCell(3).getStringCellValue();
+
+						System.out.println(key);
+
+					/*	switch (key) {
+
+						case "launch":
+
+							String Url = td.getRow(1).getCell(0).getStringCellValue();
+							res = om.launch(Url);
+
+							break;
+
+						case "login":
+
+							String u = td.getRow(1).getCell(1).getStringCellValue();
+							String p = td.getRow(1).getCell(2).getStringCellValue();
+							res = om.Login(u, p);
+
+							break;
+
+						case "logout":
+
+							res = om.Logout();
+							ts.getRow(j).getCell(4).setCellValue(res);
+
+							break;
+
+						case "empreg":
+
+							String f = td.getRow(1).getCell(3).getStringCellValue();
+							String l = td.getRow(1).getCell(4).getStringCellValue();
+							res = om.Empreg(f, l);
+
+							break;
+
+						case "usrreg":
+
+							String ename = td.getRow(1).getCell(5).getStringCellValue();
+							String uname = td.getRow(1).getCell(6).getStringCellValue();
+							String pswd = td.getRow(1).getCell(7).getStringCellValue();
+							String cpswd = td.getRow(1).getCell(8).getStringCellValue();
+							res = om.Userreg(ename, uname, pswd, cpswd);
+
+							break;
+
+						case "ulogin":
+
+							String un = td.getRow(1).getCell(6).getStringCellValue();
+							String cp = td.getRow(1).getCell(8).getStringCellValue();
+							res = om.Login(un, cp);
+
+							break;
+
+						}
+						// Update the result in test steps sheet
+
+						ts.getRow(j).getCell(4).setCellValue(res);
+
+						// Updating the result in test case sheet
+
+						if (!tc.getRow(i).getCell(3).getStringCellValue().equalsIgnoreCase("Fail")) {
+
+							tc.getRow(i).getCell(3).setCellValue(res);
+
+						}*
+
+					}
+
+				}
+
+			} 
+			else 
+			{
+				tc.getRow(i).getCell(2).setCellValue("Blocked");
+			}
+
+		}
+		
+		
+		wb.write(fo);;
+		wb.close();
+
+	}
+} 

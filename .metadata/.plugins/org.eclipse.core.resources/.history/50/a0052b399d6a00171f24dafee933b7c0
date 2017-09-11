@@ -1,0 +1,19 @@
+package Day3;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class MethodLinks {
+
+	public static void main(String[] args) {
+    WebDriver driver =new FirefoxDriver();
+    driver.get("https://gmail.com");
+    //To get the page title
+    String title= driver.getTitle();
+    System.out.println(title);
+    
+    //To get the URL
+    System.out.println(driver.getCurrentUrl());
+	}
+
+}

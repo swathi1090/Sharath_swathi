@@ -1,0 +1,10 @@
+import org.junit.Test;
+
+public class PrimusLogin_Logout {
+	
+	@Test
+	public static void p_login_logout(){
+		
+	}
+
+}

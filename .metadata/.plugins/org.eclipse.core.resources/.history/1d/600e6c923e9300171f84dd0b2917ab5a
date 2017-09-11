@@ -1,0 +1,17 @@
+import org.junit.Test;
+import org.openqa.selenium.By;
+
+public class PrimusLogin_Logout extends JUnitMaster {
+	
+	@Test
+	public static void p_login_logout(){
+		
+		driver.findElement(By.id("")).sendKeys("Admin");
+		driver.findElement(By.id("")).sendKeys("Admin");
+
+		driver.findElement(By.id("")).click();
+		driver.findElement(By.id("")).click();
+
+	}
+
+}

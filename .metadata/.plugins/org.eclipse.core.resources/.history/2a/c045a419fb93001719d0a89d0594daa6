@@ -1,0 +1,12 @@
+feature: Orange HRM Login and Logout
+
+Scenario : Login Test
+Given The browser should be launched and navigated to the URL
+When The tester should enter the login credentials
+And when the tester clicks on login
+Then The Welcome admin message must be displayed
+
+Scenario: Logout Test
+When The tester clicks on welcome admin
+And clicks on logout
+Then login page is displayed
